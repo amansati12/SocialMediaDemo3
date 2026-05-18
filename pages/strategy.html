@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategy | Paneri Sarees — @socialwithamin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .page-hero { background: #090909; padding: 160px 0 80px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(138,139,74,0.2) 0%, transparent 55%); }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.8rem); }
+    .page-hero p { color: rgba(255,255,255,0.45); font-size: 0.95rem; max-width: 520px; }
+    .breadcrumb-custom { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+    .breadcrumb-custom a { color: var(--accent-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; }
+    .breadcrumb-custom span { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+    #strategy { padding: 80px 0 100px; background: var(--bg); }
+
+    .content-card { background: var(--white); border: 1px solid rgba(138,139,74,0.1); border-radius: 20px; padding: 30px; height: 100%; transition: var(--transition); position: relative; overflow: hidden; }
+    .content-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-dark), var(--accent-light)); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
+    .content-card:hover { transform: translateY(-6px); box-shadow: 0 16px 44px rgba(0,0,0,0.1); border-color: var(--accent-light); }
+    .content-card:hover::before { transform: scaleX(1); }
+    .content-card-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--accent-dark), var(--accent-light)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.15rem; margin-bottom: 18px; }
+    .content-card h5 { font-size: 1rem; color: var(--dark); margin-bottom: 12px; }
+    .content-card p { color: var(--secondary); font-size: 0.87rem; line-height: 1.78; margin-bottom: 0; }
+
+    .hook-box { background: linear-gradient(135deg, #f8f6f0, #ede9e0); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 8px 0; font-style: italic; color: var(--dark); font-size: 0.88rem; line-height: 1.6; }
+
+    .content-calendar { background: #f8f6f0; border-radius: 14px; padding: 18px; margin-top: 14px; }
+    .calendar-row { display: flex; gap: 6px; margin-bottom: 6px; }
+    .cal-day { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 0.65rem; font-weight: 600; color: var(--secondary); transition: var(--transition); }
+    .cal-day.post-day { background: var(--accent); color: var(--white); }
+    .cal-day.reel-day { background: var(--accent-dark); color: var(--white); }
+    .cal-day.story-day { background: #b0b168; color: var(--white); }
+    .cal-legend { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+    .cal-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--secondary); }
+    .cal-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo-ring"><div class="loader-logo-inner"><i class="fas fa-dharmachakra"></i></div></div>
+  <div class="loader-brand">@socialwithamin</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+<a href="https://wa.me/917600000000" id="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">@<span>socialwithamin</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="reels.html">Reels</a></li>
+        <li class="nav-item"><a class="nav-link active-page" href="strategy.html">Strategy</a></li>
+        <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom">
+      <a href="../index.html">Home</a><span>/</span>
+      <span style="color:var(--accent-light)">Strategy</span>
+    </div>
+    <span class="section-label">Content Strategy</span>
+    <h1 class="mb-3">Social Media <span class="gradient-text">Content Plan</span></h1>
+    <p>Strategic content framework crafted exclusively for Paneri Sarees — every post purposeful.</p>
+  </div>
+</div>
+
+<!-- STRATEGY SECTION -->
+<section id="strategy">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Content Strategy</span>
+        <h2 class="section-title">Our <span class="accent">Proven</span> Framework</h2>
+        <div class="section-divider center"></div>
+        <p class="mt-4 text-muted" style="font-size:0.9rem">Strategic content framework crafted exclusively for Paneri Sarees</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-bolt"></i></div>
+          <h5>Power Hooks</h5>
+          <div class="hook-box">"You've never seen a saree drape like THIS before…"</div>
+          <div class="hook-box">"This one piece sold out in 2 hours last Navratri 👀"</div>
+          <div class="hook-box">"POV: You open our new collection page…"</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-pen-nib"></i></div>
+          <h5>Caption Templates</h5>
+          <p>Every thread tells a story — our Banarasi silks carry centuries of art, woven into every zari strand. 🥻✨<br><br>Dressed for every occasion, made for the modern Indian woman.<br><br>📩 DM to order · Shipping across India 🇮🇳</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-bullseye"></i></div>
+          <h5>CTA Strategy</h5>
+          <p>→ "Comment 🥻 to get the price in DM"<br><br>→ "Tag someone who would look stunning in this"<br><br>→ "Save this post for your next occasion look"<br><br>→ "Swipe to see all 6 colour options ➡️"</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-layer-group"></i></div>
+          <h5>Carousel Ideas</h5>
+          <p>1. "5 Ways to Style a Kanjivaram for Different Occasions"<br><br>2. "Before vs After: How Social Media Transformed Our Brand"<br><br>3. "Complete Guide: Choosing the Right Saree for Your Skin Tone"</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-columns"></i></div>
+          <h5>Content Calendar</h5>
+          <div class="content-calendar">
+            <div class="calendar-row">
+              <div class="cal-day">M</div>
+              <div class="cal-day post-day">T</div>
+              <div class="cal-day">W</div>
+              <div class="cal-day reel-day">T</div>
+              <div class="cal-day post-day">F</div>
+              <div class="cal-day story-day">S</div>
+              <div class="cal-day reel-day">S</div>
+            </div>
+            <div class="cal-legend">
+              <div class="cal-legend-item"><div class="cal-dot" style="background:var(--accent)"></div>Post</div>
+              <div class="cal-legend-item"><div class="cal-dot" style="background:var(--accent-dark)"></div>Reel</div>
+              <div class="cal-legend-item"><div class="cal-dot" style="background:#b0b168"></div>Story</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="content-card">
+          <div class="content-card-icon"><i class="fas fa-hashtag"></i></div>
+          <h5>Hashtag Strategy</h5>
+          <p style="font-size:0.82rem;line-height:2">#PaneriSarees #SareeLovers #LuxurySaree #BanarasiSaree #KanjivaramSilk #EthnicFashion #IndianWear #SareesOfInstagram #PorbandarFashion #WeddingSaree #SareeDraping #IndianFashion #BridalLehenga #DesignerSarees</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 class="mb-3">Want a Custom Strategy for <em>Your</em> Brand?</h2>
+    <p class="mb-5">We build data-driven content plans that convert followers into customers.</p>
+    <a href="contact.html" class="btn-white"><i class="fas fa-rocket"></i> Get Your Strategy</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">@<span>socialwithamin</span></div>
+        <div class="footer-tagline">Premium social media management for luxury brands. Turning Instagram profiles into powerful business assets.</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917600000000" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:socialwithamin@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="reels.html">Reels</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram Management</a></li>
+          <li><a href="#">Reel Production</a></li>
+          <li><a href="#">Content Strategy</a></li>
+          <li><a href="#">Brand Photography</a></li>
+          <li><a href="#">Growth Consulting</a></li>
+          <li><a href="#">Hashtag Research</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Client</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></li>
+          <li><a href="#">Paneri Sarees Porbandar</a></li>
+          <li><a href="#">Luxury Sarees · Ethnic Fashion</a></li>
+          <li><a href="#">Porbandar, Gujarat, India</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 <a href="#">@socialwithamin</a>. All rights reserved.</span>
+      <span>Portfolio for <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paneri Sarees | Home — @socialwithamin</title>
+  <meta name="description" content="Premium social media management portfolio for Paneri Sarees Porbandar – Luxury Sarees & Ethnic Fashion. Managed by @socialwithamin." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===================== HERO ===================== */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden; background: #090909;
+    }
+    .hero-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px);
+      animation: orbFloat 9s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .hero-orb-1 { width:550px;height:550px; background:radial-gradient(circle,rgba(138,139,74,0.28) 0%,transparent 70%); top:-12%;left:-12%; }
+    .hero-orb-2 { width:420px;height:420px; background:radial-gradient(circle,rgba(176,177,104,0.18) 0%,transparent 70%); bottom:-12%;right:-6%; animation-delay:-4s; }
+    .hero-orb-3 { width:280px;height:280px; background:radial-gradient(circle,rgba(99,100,40,0.22) 0%,transparent 70%); top:42%;left:38%; animation-delay:-6s; }
+    @keyframes orbFloat { from{transform:translate(0,0) scale(1)} to{transform:translate(50px,35px) scale(1.12)} }
+    #particles-canvas { position:absolute;inset:0;pointer-events:none;z-index:1; }
+    .hero-pattern {
+      position:absolute;inset:0;z-index:1;
+      background-image: repeating-linear-gradient(45deg,rgba(138,139,74,0.03) 0,rgba(138,139,74,0.03) 1px,transparent 0,transparent 50%), repeating-linear-gradient(-45deg,rgba(138,139,74,0.03) 0,rgba(138,139,74,0.03) 1px,transparent 0,transparent 50%);
+      background-size:30px 30px;
+    }
+    .hero-content { position:relative;z-index:2; }
+    .hero-eyebrow {
+      display:inline-flex;align-items:center;gap:10px;
+      background:rgba(138,139,74,0.12);border:1px solid rgba(138,139,74,0.28);
+      border-radius:30px;padding:8px 20px;margin-bottom:28px;backdrop-filter:blur(10px);
+    }
+    .hero-eyebrow span { font-family:'Poppins',sans-serif;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-light);font-weight:600; }
+    .hero-eyebrow .dot { width:6px;height:6px;background:var(--accent-light);border-radius:50%;animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+    .hero-title { font-size:clamp(2.2rem,5.5vw,4.8rem);line-height:1.1;color:var(--white);margin-bottom:22px; }
+    .hero-title .line-2 { color:var(--accent-light);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.8rem,4.5vw,4rem);display:block; }
+    .hero-username { font-family:'Poppins',sans-serif;font-size:1rem;color:rgba(255,255,255,0.55);margin-bottom:38px;display:flex;align-items:center;gap:10px; }
+    .hero-username i { color:var(--accent-light);font-size:1.1rem; }
+    .hero-username strong { color:var(--accent-light); }
+    .hero-cta { display:flex;gap:12px;flex-wrap:wrap; }
+
+    .hero-profile-card {
+      background:rgba(255,255,255,0.045);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      border:1px solid rgba(255,255,255,0.1);border-radius:28px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;
+    }
+    .hero-profile-card::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,177,104,0.5),transparent); }
+    .hero-profile-pic { width:88px;height:88px;border-radius:50%;background:#1a1a1a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative;overflow:hidden; }
+    .hero-profile-pic::after { content:'';position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(var(--accent-light) 0%,var(--accent-dark) 40%,transparent 60%,var(--accent-light) 100%);z-index:-1;animation:rotateBorder 3s linear infinite; }
+    @keyframes rotateBorder { to{transform:rotate(360deg)} }
+    .hero-profile-name { font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:3px; }
+    .hero-profile-handle { font-size:0.78rem;color:var(--accent-light);margin-bottom:6px; }
+    .hero-profile-niche { font-size:0.72rem;color:rgba(255,255,255,0.4);margin-bottom:18px;letter-spacing:1px; }
+    .hero-highlights { display:flex;gap:8px;justify-content:center;margin-bottom:20px; }
+    .highlight-circle { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent-dark),var(--accent-light));display:flex;align-items:center;justify-content:center;color:var(--white);font-size:0.95rem;border:2px solid rgba(255,255,255,0.15);cursor:pointer;transition:var(--transition); }
+    .highlight-circle:hover { transform:scale(1.15); }
+    .hero-profile-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px; }
+    .hero-stat-item label { display:block;font-size:0.62rem;color:rgba(255,255,255,0.42);letter-spacing:1px;text-transform:uppercase;margin-top:4px; }
+    .hero-stat-item .val { font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent-light); }
+
+    .scroll-hint {
+      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3;
+    }
+    .scroll-hint span { font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase; }
+    .scroll-hint .arrow { color:rgba(255,255,255,0.3);font-size:0.85rem;animation:bounce 2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    /* IG PROFILE SHOWCASE */
+    #profile-showcase { padding:100px 0;background:#0d0d0d; }
+    .ig-profile-card { background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:22px;overflow:hidden; }
+    .ig-cover { height:100px;background:linear-gradient(135deg,var(--accent-dark),var(--accent-light));display:flex;align-items:flex-end;padding:12px 16px; }
+    .ig-cover-text { font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.7);letter-spacing:2px; }
+    .ig-profile-inner { padding:0 20px 24px; }
+    .ig-profile-avatar { width:72px;height:72px;border-radius:50%;background:var(--white);border:3px solid #1a1a1a;margin-top:-36px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 0 3px var(--accent-light); }
+    .ig-username { font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.95rem;color:var(--white); }
+    .ig-handle { font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:10px; }
+    .ig-bio { font-size:0.8rem;line-height:1.75;color:rgba(255,255,255,0.6);margin-bottom:14px; }
+    .ig-stats-row { display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 0;margin-bottom:16px; }
+    .ig-stat { flex:1;text-align:center; }
+    .ig-stat .num { display:block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;color:var(--white); }
+    .ig-stat .lbl { font-size:0.65rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px; }
+    .ig-highlights-row { display:flex;gap:12px;overflow-x:auto;padding-bottom:12px;margin-bottom:14px;scrollbar-width:none; }
+    .ig-highlights-row::-webkit-scrollbar { display:none; }
+    .ig-highlight { display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0; }
+    .ig-highlight .ring { width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent-dark),var(--accent-light));display:flex;align-items:center;justify-content:center; }
+    .ig-highlight .ring-inner { width:44px;height:44px;border-radius:50%;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:1.2rem; }
+    .ig-highlight span { font-size:0.6rem;color:rgba(255,255,255,0.5);text-align:center; }
+    .ig-follow-btn { display:block;text-align:center;background:linear-gradient(135deg,var(--accent-dark),var(--accent-light));color:var(--white);border-radius:10px;padding:10px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:var(--transition);margin-bottom:8px; }
+    .ig-follow-btn:hover { transform:translateY(-2px);box-shadow:0 6px 20px rgba(138,139,74,0.4);color:var(--white); }
+    .ig-msg-btn { display:block;text-align:center;background:rgba(37,211,102,0.15);color:#25D366;border:1px solid rgba(37,211,102,0.3);border-radius:10px;padding:10px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:var(--transition); }
+    .ig-msg-btn:hover { background:#25D366;color:var(--white); }
+
+    .ig-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:12px;overflow:hidden; }
+    .ig-grid-cell { position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer; }
+    .ig-grid-placeholder { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:rgba(255,255,255,0.2);transition:var(--transition); }
+    .ig-grid-cell:hover .ig-grid-placeholder { transform:scale(1.08); }
+    .ig-grid-overlay { position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;gap:12px;color:var(--white);font-size:0.72rem;opacity:0;transition:var(--transition); }
+    .ig-grid-cell:hover .ig-grid-overlay { opacity:1; }
+
+    .engage-card { background:#1e1e1e;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;transition:var(--transition); }
+    .engage-card:hover { transform:translateY(-4px);border-color:rgba(138,139,74,0.2); }
+    .engage-icon { width:42px;height:42px;background:rgba(138,139,74,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent-light);font-size:1rem;flex-shrink:0; }
+    .engage-info .num { display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.3rem;color:var(--accent-light); }
+    .engage-info .lbl { font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px; }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo-ring"><div class="loader-logo-inner"><i class="fas fa-dharmachakra"></i></div></div>
+  <div class="loader-brand">@socialwithamin</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<a href="https://wa.me/917600000000" id="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">@<span>socialwithamin</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link active-page" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/reels.html">Reels</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/strategy.html">Strategy</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-pattern"></div>
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="container hero-content py-5 mt-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-eyebrow fade-up">
+          <div class="dot"></div>
+          <span>Premium Social Media Portfolio</span>
+        </div>
+        <h1 class="hero-title fade-up fade-up-delay-1">
+          Premium Social<br>Media Management
+          <span class="line-2">Portfolio</span>
+        </h1>
+        <div class="hero-username fade-up fade-up-delay-2">
+          <i class="fab fa-instagram"></i>
+          Client: <strong>@paneri_sarees_porbandar</strong>
+        </div>
+        <div class="hero-cta fade-up fade-up-delay-3">
+          <a href="pages/portfolio.html" class="btn-primary-custom"><i class="fas fa-eye"></i> View Work</a>
+          <a href="pages/contact.html" class="btn-outline-custom"><i class="fas fa-comment-dots"></i> Contact Now</a>
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener" class="btn-outline-custom"><i class="fab fa-instagram"></i> Visit Instagram</a>
+        </div>
+      </div>
+      <div class="col-lg-5 fade-up fade-up-delay-4">
+        <div class="hero-profile-card">
+          <div class="hero-highlights">
+            <div class="highlight-circle" title="Sarees"><i class="fas fa-tshirt"></i></div>
+            <div class="highlight-circle" title="New Collection"><i class="fas fa-star"></i></div>
+            <div class="highlight-circle" title="Luxury"><i class="fas fa-gem"></i></div>
+            <div class="highlight-circle" title="Design"><i class="fas fa-palette"></i></div>
+            <div class="highlight-circle" title="Orders"><i class="fas fa-shopping-bag"></i></div>
+          </div>
+          <div class="hero-profile-pic">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="74" height="74">
+              <path d="M38 72 C30 60,24 44,32 30 C36 22,44 16,50 12 C48 22,50 30,56 36 C60 40,64 38,66 34 C70 42,68 54,62 62 C56 70,46 74,38 72Z" fill="url(#fg1)"/>
+              <path d="M50 12 C52 24,58 32,64 30 C62 38,58 44,54 48 C58 42,60 34,56 28 C54 22,52 16,50 12Z" fill="#e8520a" opacity="0.75"/>
+              <text x="50" y="86" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#1a1a1a" letter-spacing="1">PANERI</text>
+              <text x="50" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#7D7D7D" letter-spacing="2">sarees</text>
+              <defs><linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f5a623"/><stop offset="60%" style="stop-color:#e8520a"/><stop offset="100%" style="stop-color:#c43b00"/></linearGradient></defs>
+            </svg>
+          </div>
+          <div class="hero-profile-name">PANERI SAREES</div>
+          <div class="hero-profile-handle">@paneri_sarees_porbandar</div>
+          <div class="hero-profile-niche">Luxury Sarees · Ethnic Fashion · Porbandar</div>
+          <div class="hero-profile-stats">
+            <div class="hero-stat-item"><span class="val">4.3K+</span><label>Followers</label></div>
+            <div class="hero-stat-item"><span class="val">378+</span><label>Posts</label></div>
+            <div class="hero-stat-item"><span class="val">17</span><label>Following</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><i class="fas fa-chevron-down arrow"></i></div>
+</section>
+
+<!-- INSTAGRAM PROFILE SHOWCASE -->
+<section id="profile-showcase">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Instagram Presence</span>
+        <h2 class="section-title" style="color:var(--white)">Client <span class="gradient-text">Profile</span> Overview</h2>
+        <div class="section-divider center"></div>
+      </div>
+    </div>
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4" data-aos="fade-right">
+        <div class="ig-profile-card">
+          <div class="ig-cover"><div class="ig-cover-text">Paneri Sarees Porbandar</div></div>
+          <div class="ig-profile-inner">
+            <div class="ig-profile-avatar">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="70" height="70">
+                <path d="M38 72 C30 60,24 44,32 30 C36 22,44 16,50 12 C48 22,50 30,56 36 C60 40,64 38,66 34 C70 42,68 54,62 62 C56 70,46 74,38 72Z" fill="url(#fg2)"/>
+                <path d="M50 12 C52 24,58 32,64 30 C62 38,58 44,54 48 C58 42,60 34,56 28 C54 22,52 16,50 12Z" fill="#e8520a" opacity="0.75"/>
+                <text x="50" y="86" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#1a1a1a" letter-spacing="1">PANERI</text>
+                <text x="50" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#666" letter-spacing="2">sarees</text>
+                <defs><linearGradient id="fg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f5a623"/><stop offset="60%" style="stop-color:#e8520a"/><stop offset="100%" style="stop-color:#c43b00"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <div class="ig-username">PANERI SAREES</div>
+              <span class="niche-badge"><i class="fas fa-check-circle"></i> Brand</span>
+            </div>
+            <div class="ig-handle">@paneri_sarees_porbandar</div>
+            <div class="ig-bio">
+              👗 Women's clothing store<br>
+              📲 For Order &amp; Inquiry — DM us<br>
+              💎 Exclusive Bridal Lehenga Collection<br>
+              🥻 Designer Sarees · Kurtis · Dress Material<br>
+              📍 Porbandar, Gujarat
+            </div>
+            <div class="ig-stats-row">
+              <div class="ig-stat"><span class="num">378+</span><span class="lbl">Posts</span></div>
+              <div class="ig-stat"><span class="num">4.3K+</span><span class="lbl">Followers</span></div>
+              <div class="ig-stat"><span class="num">17</span><span class="lbl">Following</span></div>
+            </div>
+            <div class="ig-highlights-row">
+              <div class="ig-highlight"><div class="ring"><div class="ring-inner">🥻</div></div><span>Sarees</span></div>
+              <div class="ig-highlight"><div class="ring"><div class="ring-inner">✨</div></div><span>New In</span></div>
+              <div class="ig-highlight"><div class="ring"><div class="ring-inner">💎</div></div><span>Luxury</span></div>
+              <div class="ig-highlight"><div class="ring"><div class="ring-inner">📦</div></div><span>Orders</span></div>
+              <div class="ig-highlight"><div class="ring"><div class="ring-inner">🎬</div></div><span>Reels</span></div>
+            </div>
+            <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener" class="ig-follow-btn mb-2"><i class="fab fa-instagram"></i> Visit Profile</a>
+            <a href="https://wa.me/917600000000" target="_blank" rel="noopener" class="ig-msg-btn"><i class="fab fa-whatsapp"></i> Message</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8" data-aos="fade-left">
+        <div class="ig-grid mb-4">
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#2a2a1e,#3d3d28)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 284 &nbsp;<i class="fas fa-comment"></i> 42</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#1e2a2a,#28383d)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 312 &nbsp;<i class="fas fa-comment"></i> 58</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#2a1e2a,#3d2838)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 198 &nbsp;<i class="fas fa-comment"></i> 31</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#1e2a1e,#28382a)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 425 &nbsp;<i class="fas fa-comment"></i> 67</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#2a261e,#3d3520)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 537 &nbsp;<i class="fas fa-comment"></i> 89</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#1e2226,#283040)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 261 &nbsp;<i class="fas fa-comment"></i> 44</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#261e2a,#3a2840)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 389 &nbsp;<i class="fas fa-comment"></i> 72</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#2a2218,#3d3320)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 302 &nbsp;<i class="fas fa-comment"></i> 49</div></div>
+          <div class="ig-grid-cell"><div class="ig-grid-placeholder" style="background:linear-gradient(135deg,#1a2420,#243630)"><i class="fas fa-image"></i></div><div class="ig-grid-overlay"><i class="fas fa-heart"></i> 418 &nbsp;<i class="fas fa-comment"></i> 61</div></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-6"><div class="engage-card"><div class="engage-icon"><i class="fas fa-heart"></i></div><div class="engage-info"><span class="num" data-target="3.2" data-suffix="%">0</span><span class="lbl">Engagement Rate</span></div></div></div>
+          <div class="col-6"><div class="engage-card"><div class="engage-icon"><i class="fas fa-eye"></i></div><div class="engage-info"><span class="num" data-target="18" data-suffix="K">0</span><span class="lbl">Monthly Reach</span></div></div></div>
+          <div class="col-6"><div class="engage-card"><div class="engage-icon"><i class="fas fa-play"></i></div><div class="engage-info"><span class="num" data-target="6.4" data-suffix="K">0</span><span class="lbl">Avg Reel Views</span></div></div></div>
+          <div class="col-6"><div class="engage-card"><div class="engage-icon"><i class="fas fa-share-alt"></i></div><div class="engage-info"><span class="num" data-target="320" data-suffix="">0</span><span class="lbl">Monthly Shares</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 class="mb-3">Ready to Grow <em>Your</em> Brand on Instagram?</h2>
+    <p class="mb-5">Join luxury brands from Gujarat who trust @socialwithamin for premium social media management.</p>
+    <a href="pages/contact.html" class="btn-white"><i class="fas fa-rocket"></i> Start Growing Now</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">@<span>socialwithamin</span></div>
+        <div class="footer-tagline">Premium social media management for luxury brands. Turning Instagram profiles into powerful business assets.</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917600000000" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:socialwithamin@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/portfolio.html">Portfolio</a></li>
+          <li><a href="pages/reels.html">Reels</a></li>
+          <li><a href="pages/strategy.html">Strategy</a></li>
+          <li><a href="pages/insights.html">Insights</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram Management</a></li>
+          <li><a href="#">Reel Production</a></li>
+          <li><a href="#">Content Strategy</a></li>
+          <li><a href="#">Brand Photography</a></li>
+          <li><a href="#">Growth Consulting</a></li>
+          <li><a href="#">Hashtag Research</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Client</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></li>
+          <li><a href="#">Paneri Sarees Porbandar</a></li>
+          <li><a href="#">Luxury Sarees · Ethnic Fashion</a></li>
+          <li><a href="#">Porbandar, Gujarat, India</a></li>
+        </ul>
+        <div class="mt-4 p-3" style="background:rgba(138,139,74,0.08);border-radius:12px;border:1px solid rgba(138,139,74,0.14)">
+          <div style="color:var(--accent-light);font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Managed by</div>
+          <div style="color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.1rem">@socialwithamin</div>
+          <div style="color:rgba(255,255,255,0.3);font-size:0.72rem;margin-top:2px">Premium Social Media Agency</div>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 <a href="#">@socialwithamin</a>. All rights reserved.</span>
+      <span>Portfolio for <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Paneri Sarees — @socialwithamin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      background: #090909;
+      padding: 160px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(138,139,74,0.18) 0%, transparent 60%);
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.8rem); }
+    .page-hero p { color: rgba(255,255,255,0.45); font-size: 0.95rem; max-width: 520px; }
+    .breadcrumb-custom { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+    .breadcrumb-custom a { color: var(--accent-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; }
+    .breadcrumb-custom span { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+    /* PORTFOLIO SECTION */
+    #portfolio { padding: 80px 0 100px; background: var(--bg); }
+
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .filter-btn {
+      background: transparent; border: 1.5px solid rgba(138,139,74,0.3); color: var(--secondary);
+      padding: 8px 20px; border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent); border-color: var(--accent); color: var(--white);
+      box-shadow: 0 4px 16px rgba(138,139,74,0.3);
+    }
+
+    .masonry-grid { columns: 3 280px; column-gap: 18px; }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 18px;
+      border-radius: var(--radius); overflow: hidden;
+      position: relative; cursor: pointer;
+      transition: var(--transition);
+    }
+    .masonry-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
+    .masonry-item .portfolio-placeholder { transition: var(--transition); }
+    .masonry-item:hover .portfolio-placeholder { transform: scale(1.05); }
+
+    .masonry-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.88) 0%, transparent 100%);
+      padding: 32px 16px 16px;
+      transform: translateY(100%); transition: var(--transition);
+    }
+    .masonry-item:hover .masonry-caption { transform: translateY(0); }
+    .masonry-caption h6 { color: var(--white); font-size: 0.88rem; margin-bottom: 3px; }
+    .masonry-caption p { color: var(--accent-light); font-size: 0.73rem; }
+
+    .portfolio-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: rgba(255,255,255,0.25);
+    }
+
+    @media (max-width: 991px) { .masonry-grid { columns: 2 200px; } }
+    @media (max-width: 575px) { .masonry-grid { columns: 2 130px; } }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo-ring"><div class="loader-logo-inner"><i class="fas fa-dharmachakra"></i></div></div>
+  <div class="loader-brand">@socialwithamin</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+<a href="https://wa.me/917600000000" id="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">@<span>socialwithamin</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active-page" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="reels.html">Reels</a></li>
+        <li class="nav-item"><a class="nav-link" href="strategy.html">Strategy</a></li>
+        <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span style="color:var(--accent-light)">Portfolio</span>
+    </div>
+    <span class="section-label">Content Gallery</span>
+    <h1 class="mb-3">Image <span class="gradient-text">Portfolio</span></h1>
+    <p>Premium content crafted for Paneri Sarees — each post engineered for engagement and brand elevation.</p>
+  </div>
+</div>
+
+<!-- PORTFOLIO SECTION -->
+<section id="portfolio">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5" data-aos="fade-up">
+      <div class="col-lg-6">
+        <h2 class="section-title">Our <span class="accent">Creative</span> Work</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+        <div class="filter-tabs justify-content-lg-end">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="saree">Sarees</button>
+          <button class="filter-btn" data-filter="reel">Reels</button>
+          <button class="filter-btn" data-filter="story">Stories</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="masonry-grid" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="masonry-item" data-filter="saree">
+        <a href="https://via.placeholder.com/600x800/8A8B4A/FFFFFF?text=Saree+Collection+01" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:280px;background:linear-gradient(135deg,#8A8B4A,#b0b168)"><i class="fas fa-tshirt fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Banarasi Silk Collection</h6><p>✨ 847 likes · 23 comments</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="saree">
+        <a href="https://via.placeholder.com/600x400/636428/FFFFFF?text=Ethnic+Wear+02" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:185px;background:linear-gradient(135deg,#636428,#8A8B4A)"><i class="fas fa-gem fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Kanjivaram Heritage</h6><p>✨ 623 likes · 18 comments</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="story">
+        <a href="https://via.placeholder.com/600x900/3d3d28/FFFFFF?text=Story+Design+03" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:320px;background:linear-gradient(135deg,#3d3d28,#636428)"><i class="fas fa-star fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Festival Story Design</h6><p>📱 Story · 4.2K views</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="saree">
+        <a href="https://via.placeholder.com/600x600/b0b168/FFFFFF?text=Luxury+Saree+04" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:220px;background:linear-gradient(135deg,#b0b168,#8A8B4A)"><i class="fas fa-crown fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Zari Work Luxury Drape</h6><p>✨ 1.2K likes · 45 comments</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="reel">
+        <a href="https://via.placeholder.com/600x800/1a1a0f/FFFFFF?text=Reel+Cover+05" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:260px;background:linear-gradient(135deg,#1a1a0f,#3d3d28)"><i class="fas fa-play-circle fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Unboxing Reel Thumbnail</h6><p>🎬 8.4K reel views</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="story">
+        <a href="https://via.placeholder.com/600x400/8A8B4A/FFFFFF?text=Promotion+06" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:175px;background:linear-gradient(135deg,#8A8B4A,#636428)"><i class="fas fa-tag fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Sale Promotion Graphic</h6><p>📣 High CTA design</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="saree">
+        <a href="https://via.placeholder.com/600x700/636428/FFFFFF?text=Saree+Look+07" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:245px;background:linear-gradient(180deg,#636428,#8A8B4A)"><i class="fas fa-magic fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Bridal Silk Edition</h6><p>✨ 934 likes · 37 comments</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="reel">
+        <a href="https://via.placeholder.com/600x500/3d3d28/FFFFFF?text=Reel+8" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:195px;background:linear-gradient(135deg,#3d3d28,#1a1a0f)"><i class="fas fa-film fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Styling Reel Cover</h6><p>🎬 12K reel views</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="saree">
+        <a href="https://via.placeholder.com/600x800/b0b168/FFFFFF?text=Collection+9" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:285px;background:linear-gradient(180deg,#b0b168,#636428)"><i class="fas fa-leaf fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Patola Weave Heritage</h6><p>✨ 756 likes · 29 comments</p></div>
+        </a>
+      </div>
+
+      <div class="masonry-item" data-filter="story">
+        <a href="https://via.placeholder.com/600x600/8A8B4A/FFFFFF?text=Story+10" class="glightbox" data-gallery="portfolio">
+          <div class="portfolio-placeholder" style="height:215px;background:linear-gradient(45deg,#8A8B4A,#3d3d28)"><i class="fas fa-palette fa-2x"></i></div>
+          <div class="masonry-caption"><h6>Brand Story Highlight</h6><p>📱 Story design</p></div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 class="mb-3">Ready to Grow <em>Your</em> Brand on Instagram?</h2>
+    <p class="mb-5">Join luxury brands from Gujarat who trust @socialwithamin for premium social media management.</p>
+    <a href="contact.html" class="btn-white"><i class="fas fa-rocket"></i> Start Growing Now</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">@<span>socialwithamin</span></div>
+        <div class="footer-tagline">Premium social media management for luxury brands. Turning Instagram profiles into powerful business assets.</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917600000000" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:socialwithamin@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="reels.html">Reels</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram Management</a></li>
+          <li><a href="#">Reel Production</a></li>
+          <li><a href="#">Content Strategy</a></li>
+          <li><a href="#">Brand Photography</a></li>
+          <li><a href="#">Growth Consulting</a></li>
+          <li><a href="#">Hashtag Research</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Client</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></li>
+          <li><a href="#">Paneri Sarees Porbandar</a></li>
+          <li><a href="#">Luxury Sarees · Ethnic Fashion</a></li>
+          <li><a href="#">Porbandar, Gujarat, India</a></li>
+        </ul>
+        <div class="mt-4 p-3" style="background:rgba(138,139,74,0.08);border-radius:12px;border:1px solid rgba(138,139,74,0.14)">
+          <div style="color:var(--accent-light);font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Managed by</div>
+          <div style="color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.1rem">@socialwithamin</div>
+          <div style="color:rgba(255,255,255,0.3);font-size:0.72rem;margin-top:2px">Premium Social Media Agency</div>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 <a href="#">@socialwithamin</a>. All rights reserved.</span>
+      <span>Portfolio for <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

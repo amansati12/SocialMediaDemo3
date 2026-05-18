@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reels | Paneri Sarees — @socialwithamin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      background: #090909; padding: 160px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(138,139,74,0.18) 0%, transparent 60%);
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.8rem); }
+    .page-hero p { color: rgba(255,255,255,0.45); font-size: 0.95rem; max-width: 520px; }
+    .breadcrumb-custom { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+    .breadcrumb-custom a { color: var(--accent-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; }
+    .breadcrumb-custom span { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+    /* REELS SECTION */
+    #reels { padding: 80px 0 100px; background: #0d0d0d; }
+
+    /* VIDEO MODAL */
+    .reel-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+    }
+    .reel-modal-overlay.active { display: flex; }
+    .reel-modal-inner { width: 340px; max-width: 92vw; background: #1a1a1a; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+    .reel-modal-close { position: absolute; top: 14px; right: 14px; z-index: 10; background: rgba(0,0,0,0.6); color: var(--white); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; border: none; transition: var(--transition); }
+    .reel-modal-close:hover { background: var(--accent); }
+    .reel-modal-preview { aspect-ratio: 9/16; background: linear-gradient(160deg, #2a2a1a, #0d0d0d); display: flex; align-items: center; justify-content: center; font-size: 3rem; flex-direction: column; gap: 20px; }
+    .reel-modal-meta { padding: 20px; }
+    .reel-modal-title { color: var(--white); font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .reel-modal-stats { display: flex; gap: 16px; color: rgba(255,255,255,0.45); font-size: 0.78rem; }
+
+    /* REEL CARDS */
+    .reel-card { background: #1a1a1a; border: 1px solid rgba(255,255,255,0.07); border-radius: 22px; overflow: hidden; position: relative; transition: var(--transition); cursor: pointer; }
+    .reel-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(138,139,74,0.2); }
+    .reel-preview { aspect-ratio: 9/16; background: linear-gradient(180deg, #1e1e1e 0%, #0d0d0d 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .reel-bg-pattern { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(138,139,74,0.1), transparent 65%, rgba(138,139,74,0.05)); }
+    .reel-play { width: 62px; height: 62px; background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.35rem; border: 2px solid rgba(255,255,255,0.18); z-index: 2; transition: var(--transition); }
+    .reel-card:hover .reel-play { background: var(--accent); transform: scale(1.12); border-color: var(--accent-light); }
+    .reel-icons { position: absolute; right: 12px; bottom: 90px; display: flex; flex-direction: column; gap: 16px; z-index: 3; }
+    .reel-icon { text-align: center; color: var(--white); }
+    .reel-icon i { font-size: 1.25rem; display: block; margin-bottom: 2px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .reel-icon span { font-size: 0.63rem; color: rgba(255,255,255,0.55); }
+    .reel-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 14px; background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, transparent 100%); z-index: 2; }
+    .reel-title { color: var(--white); font-size: 0.84rem; font-weight: 600; margin-bottom: 5px; line-height: 1.4; }
+    .reel-stats { color: rgba(255,255,255,0.48); font-size: 0.7rem; display: flex; gap: 10px; flex-wrap: wrap; }
+    .reel-badge { position: absolute; top: 14px; left: 14px; z-index: 3; background: rgba(138,139,74,0.85); color: var(--white); font-size: 0.62rem; padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+
+    /* SWIPER */
+    .reels-swiper { padding-bottom: 44px !important; }
+    .swiper-pagination-bullet { background: rgba(255,255,255,0.25); }
+    .swiper-pagination-bullet-active { background: var(--accent-light); }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo-ring"><div class="loader-logo-inner"><i class="fas fa-dharmachakra"></i></div></div>
+  <div class="loader-brand">@socialwithamin</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+<a href="https://wa.me/917600000000" id="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- REEL MODAL -->
+<div class="reel-modal-overlay" id="reelModal">
+  <div class="reel-modal-inner">
+    <button class="reel-modal-close" onclick="closeReelModal()"><i class="fas fa-times"></i></button>
+    <div class="reel-modal-preview">
+      <span id="reelModalEmoji" style="font-size:3.5rem">🥻</span>
+      <div style="color:rgba(255,255,255,0.4);font-size:0.8rem;letter-spacing:2px">UPLOAD YOUR REEL HERE</div>
+    </div>
+    <div class="reel-modal-meta">
+      <div class="reel-modal-title" id="reelModalTitle">Reel Title</div>
+      <div class="reel-modal-stats" id="reelModalStats"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">@<span>socialwithamin</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link active-page" href="reels.html">Reels</a></li>
+        <li class="nav-item"><a class="nav-link" href="strategy.html">Strategy</a></li>
+        <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom">
+      <a href="../index.html">Home</a><span>/</span>
+      <span style="color:var(--accent-light)">Reels</span>
+    </div>
+    <span class="section-label">Video Content</span>
+    <h1 class="mb-3">Reel <span class="gradient-text">Showcases</span></h1>
+    <p>Instagram Reels crafted for maximum reach &amp; engagement — click to preview</p>
+  </div>
+</div>
+
+<!-- REELS SECTION -->
+<section id="reels">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Video Content</span>
+        <h2 class="section-title text-white">Top Performing <span class="gradient-text">Reels</span></h2>
+        <div class="section-divider center"></div>
+        <p class="mt-4" style="color:rgba(255,255,255,0.4);font-size:0.88rem">Instagram Reels crafted for maximum reach &amp; engagement — click to preview</p>
+      </div>
+    </div>
+
+    <div class="swiper reels-swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <!-- Reel 1 -->
+        <div class="swiper-slide" style="width:300px">
+          <div class="reel-card" onclick="openReelModal('✨','Banarasi Bridal Collection 2025','24.6K views · 8.4K likes · 312 comments')">
+            <div class="reel-badge">Trending</div>
+            <div class="reel-preview">
+              <div class="reel-bg-pattern"></div>
+              <div class="reel-play"><i class="fas fa-play ms-1"></i></div>
+              <div class="reel-icons">
+                <div class="reel-icon"><i class="fas fa-heart"></i><span>8.4K</span></div>
+                <div class="reel-icon"><i class="fas fa-comment"></i><span>312</span></div>
+                <div class="reel-icon"><i class="fas fa-share"></i><span>194</span></div>
+                <div class="reel-icon"><i class="fas fa-bookmark"></i><span>874</span></div>
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">✨ Banarasi Bridal Collection 2025</div>
+                <div class="reel-stats"><span><i class="fas fa-play me-1"></i>24.6K views</span><span><i class="fas fa-music me-1"></i>Trending Audio</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reel 2 -->
+        <div class="swiper-slide" style="width:300px">
+          <div class="reel-card" onclick="openReelModal('🥻','How to Drape the Perfect Saree','38.2K views · 12.1K likes · 487 comments')">
+            <div class="reel-badge" style="background:rgba(232,82,10,0.85)">Viral</div>
+            <div class="reel-preview" style="background:linear-gradient(180deg,#1e1a0a 0%,#111 100%)">
+              <div class="reel-bg-pattern" style="background:linear-gradient(135deg,rgba(176,177,104,0.15),transparent)"></div>
+              <div class="reel-play"><i class="fas fa-play ms-1"></i></div>
+              <div class="reel-icons">
+                <div class="reel-icon"><i class="fas fa-heart"></i><span>12.1K</span></div>
+                <div class="reel-icon"><i class="fas fa-comment"></i><span>487</span></div>
+                <div class="reel-icon"><i class="fas fa-share"></i><span>329</span></div>
+                <div class="reel-icon"><i class="fas fa-bookmark"></i><span>1.2K</span></div>
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">🥻 How to Drape the Perfect Saree</div>
+                <div class="reel-stats"><span><i class="fas fa-play me-1"></i>38.2K views</span><span><i class="fas fa-fire me-1"></i>Viral Reel</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reel 3 -->
+        <div class="swiper-slide" style="width:300px">
+          <div class="reel-card" onclick="openReelModal('💎','Kanjivaram Unboxing Experience','19.4K views · 6.8K likes · 219 comments')">
+            <div class="reel-preview" style="background:linear-gradient(180deg,#0a1a1e 0%,#111 100%)">
+              <div class="reel-bg-pattern" style="background:linear-gradient(135deg,rgba(99,100,40,0.2),transparent)"></div>
+              <div class="reel-play"><i class="fas fa-play ms-1"></i></div>
+              <div class="reel-icons">
+                <div class="reel-icon"><i class="fas fa-heart"></i><span>6.8K</span></div>
+                <div class="reel-icon"><i class="fas fa-comment"></i><span>219</span></div>
+                <div class="reel-icon"><i class="fas fa-share"></i><span>145</span></div>
+                <div class="reel-icon"><i class="fas fa-bookmark"></i><span>623</span></div>
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">💎 Kanjivaram Unboxing Experience</div>
+                <div class="reel-stats"><span><i class="fas fa-play me-1"></i>19.4K views</span><span><i class="fas fa-music me-1"></i>Original Audio</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reel 4 -->
+        <div class="swiper-slide" style="width:300px">
+          <div class="reel-card" onclick="openReelModal('🌸','New Navratri Collection Drop','31.7K views · 9.5K likes · 401 comments')">
+            <div class="reel-badge" style="background:rgba(220,39,111,0.85)">Hot</div>
+            <div class="reel-preview" style="background:linear-gradient(180deg,#1e0a1a 0%,#111 100%)">
+              <div class="reel-bg-pattern"></div>
+              <div class="reel-play"><i class="fas fa-play ms-1"></i></div>
+              <div class="reel-icons">
+                <div class="reel-icon"><i class="fas fa-heart"></i><span>9.5K</span></div>
+                <div class="reel-icon"><i class="fas fa-comment"></i><span>401</span></div>
+                <div class="reel-icon"><i class="fas fa-share"></i><span>278</span></div>
+                <div class="reel-icon"><i class="fas fa-bookmark"></i><span>1.1K</span></div>
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">🌸 New Navratri Collection Drop</div>
+                <div class="reel-stats"><span><i class="fas fa-play me-1"></i>31.7K views</span><span><i class="fas fa-music me-1"></i>Trending Audio</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reel 5 -->
+        <div class="swiper-slide" style="width:300px">
+          <div class="reel-card" onclick="openReelModal('👗','Behind The Scenes: Styling Shoot','14.2K views · 4.9K likes · 178 comments')">
+            <div class="reel-preview" style="background:linear-gradient(180deg,#101a10 0%,#111 100%)">
+              <div class="reel-bg-pattern" style="background:linear-gradient(135deg,rgba(138,139,74,0.12),transparent)"></div>
+              <div class="reel-play"><i class="fas fa-play ms-1"></i></div>
+              <div class="reel-icons">
+                <div class="reel-icon"><i class="fas fa-heart"></i><span>4.9K</span></div>
+                <div class="reel-icon"><i class="fas fa-comment"></i><span>178</span></div>
+                <div class="reel-icon"><i class="fas fa-share"></i><span>96</span></div>
+                <div class="reel-icon"><i class="fas fa-bookmark"></i><span>432</span></div>
+              </div>
+              <div class="reel-info">
+                <div class="reel-title">👗 Behind The Scenes: Styling Shoot</div>
+                <div class="reel-stats"><span><i class="fas fa-play me-1"></i>14.2K views</span><span><i class="fas fa-camera me-1"></i>BTS Content</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+
+    <p class="text-center mt-4" style="color:rgba(255,255,255,0.28);font-size:0.78rem;letter-spacing:1px">* Upload your reel .mp4 files — placeholders ready for your videos</p>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 class="mb-3">Want Viral Reels for <em>Your</em> Brand?</h2>
+    <p class="mb-5">We create high-performing reels that get views, saves and DMs rolling in.</p>
+    <a href="contact.html" class="btn-white"><i class="fas fa-rocket"></i> Start Growing Now</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">@<span>socialwithamin</span></div>
+        <div class="footer-tagline">Premium social media management for luxury brands. Turning Instagram profiles into powerful business assets.</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917600000000" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:socialwithamin@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="reels.html">Reels</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram Management</a></li>
+          <li><a href="#">Reel Production</a></li>
+          <li><a href="#">Content Strategy</a></li>
+          <li><a href="#">Brand Photography</a></li>
+          <li><a href="#">Growth Consulting</a></li>
+          <li><a href="#">Hashtag Research</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Client</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></li>
+          <li><a href="#">Paneri Sarees Porbandar</a></li>
+          <li><a href="#">Luxury Sarees · Ethnic Fashion</a></li>
+          <li><a href="#">Porbandar, Gujarat, India</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 <a href="#">@socialwithamin</a>. All rights reserved.</span>
+      <span>Portfolio for <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights | Paneri Sarees — @socialwithamin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .page-hero { background: #090909; padding: 160px 0 80px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 40%, rgba(138,139,74,0.2) 0%, transparent 55%); }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3.8rem); }
+    .page-hero p { color: rgba(255,255,255,0.45); font-size: 0.95rem; max-width: 520px; }
+    .breadcrumb-custom { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; }
+    .breadcrumb-custom a { color: var(--accent-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; }
+    .breadcrumb-custom span { color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+    #insights { padding: 80px 0 100px; background: #0d0d0d; }
+
+    .stat-card { background: linear-gradient(155deg, #1e1e1e, #161616); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px; padding: 26px; text-align: center; transition: var(--transition); position: relative; overflow: hidden; }
+    .stat-card::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 55%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .stat-card:hover { transform: translateY(-6px); border-color: rgba(138,139,74,0.2); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .stat-icon { width: 46px; height: 46px; background: rgba(138,139,74,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; color: var(--accent-light); font-size: 1.15rem; }
+    .stat-number { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.9rem; color: var(--accent-light); display: block; }
+    .stat-label { color: rgba(255,255,255,0.38); font-size: 0.73rem; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    .insight-bar-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .insight-bar-label span:first-child { color: rgba(255,255,255,0.65); font-size: 0.84rem; }
+    .insight-bar-label span:last-child { color: var(--accent-light); font-size: 0.84rem; font-weight: 600; }
+    .insight-bar { height: 6px; border-radius: 10px; background: rgba(255,255,255,0.07); margin-bottom: 18px; overflow: hidden; }
+    .insight-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent-dark), var(--accent-light)); width: 0; transition: width 1.6s cubic-bezier(0.23,1,0.32,1); }
+
+    .services-list { list-style: none; padding: 0; }
+    .services-list li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.65); font-size: 0.88rem; }
+    .services-list li:last-child { border-bottom: none; }
+    .services-list li i { color: var(--accent-light); flex-shrink: 0; }
+
+    .before-after-card { background: #191919; border-radius: 16px; padding: 22px; border: 1px solid rgba(255,255,255,0.05); }
+    .ba-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-label { color: rgba(255,255,255,0.42); font-size: 0.78rem; min-width: 100px; }
+    .ba-before { color: rgba(255,255,255,0.3); font-size: 0.88rem; text-decoration: line-through; }
+    .ba-after { color: var(--accent-light); font-size: 0.92rem; font-weight: 700; }
+
+    .growth-chart { background: #191919; border-radius: 16px; padding: 22px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px; }
+    .chart-title { color: rgba(255,255,255,0.6); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+    .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
+    .chart-bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(0deg, var(--accent-dark), var(--accent-light)); position: relative; transition: var(--transition); cursor: pointer; }
+    .chart-bar:hover::after { content: attr(data-val); position: absolute; bottom: 105%; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 0.65rem; white-space: nowrap; }
+    .chart-months { display: flex; gap: 8px; margin-top: 8px; }
+    .chart-month { flex: 1; text-align: center; font-size: 0.62rem; color: rgba(255,255,255,0.28); }
+
+    /* TESTIMONIALS */
+    #testimonials { padding: 80px 0; background: var(--bg); }
+    .testimonial-card { background: var(--white); border: 1px solid rgba(138,139,74,0.1); border-radius: 20px; padding: 28px; transition: var(--transition); height: 100%; }
+    .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .testimonial-stars { color: var(--accent-light); font-size: 0.85rem; margin-bottom: 12px; }
+    .testimonial-text { color: var(--secondary); font-size: 0.88rem; line-height: 1.75; font-style: italic; margin-bottom: 18px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-dark), var(--accent-light)); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1rem; font-weight: 700; }
+    .testimonial-name { font-size: 0.88rem; color: var(--dark); font-weight: 600; }
+    .testimonial-role { font-size: 0.73rem; color: var(--secondary); }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo-ring"><div class="loader-logo-inner"><i class="fas fa-dharmachakra"></i></div></div>
+  <div class="loader-brand">@socialwithamin</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+<a href="https://wa.me/917600000000" id="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">@<span>socialwithamin</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="reels.html">Reels</a></li>
+        <li class="nav-item"><a class="nav-link" href="strategy.html">Strategy</a></li>
+        <li class="nav-item"><a class="nav-link active-page" href="insights.html">Insights</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb-custom">
+      <a href="../index.html">Home</a><span>/</span>
+      <span style="color:var(--accent-light)">Insights</span>
+    </div>
+    <span class="section-label">Analytics Dashboard</span>
+    <h1 class="mb-3">Client <span class="gradient-text">Insights</span></h1>
+    <p>Real numbers, real growth — data-backed results delivered for Paneri Sarees Porbandar.</p>
+  </div>
+</div>
+
+<!-- INSIGHTS SECTION -->
+<section id="insights">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="section-label">Analytics Dashboard</span>
+        <h2 class="section-title text-white">Performance <span class="gradient-text">Metrics</span></h2>
+        <div class="section-divider center"></div>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="row g-4 mb-5">
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <span class="stat-number" data-target="4357" data-suffix="">0</span>
+          <div class="stat-label mt-1">Total Followers</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-images"></i></div>
+          <span class="stat-number" data-target="378" data-suffix="">0</span>
+          <div class="stat-label mt-1">Total Posts</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-eye"></i></div>
+          <span class="stat-number" data-target="18" data-suffix="K">0</span>
+          <div class="stat-label mt-1">Monthly Reach</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-heart"></i></div>
+          <span class="stat-number" data-target="3.2" data-suffix="%">0</span>
+          <div class="stat-label mt-1">Engagement Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      <!-- Progress Bars & Chart -->
+      <div class="col-lg-4" data-aos="fade-right">
+        <h5 class="text-white mb-4" style="font-size:0.9rem;letter-spacing:2px;text-transform:uppercase">Performance Metrics</h5>
+        <div class="growth-chart mb-4">
+          <div class="chart-title">Monthly Follower Growth</div>
+          <div class="chart-bars">
+            <div class="chart-bar" style="height:35%" data-val="Jan 3.1K"></div>
+            <div class="chart-bar" style="height:40%" data-val="Feb 3.3K"></div>
+            <div class="chart-bar" style="height:45%" data-val="Mar 3.5K"></div>
+            <div class="chart-bar" style="height:55%" data-val="Apr 3.7K"></div>
+            <div class="chart-bar" style="height:65%" data-val="May 3.9K"></div>
+            <div class="chart-bar" style="height:75%" data-val="Jun 4.1K"></div>
+            <div class="chart-bar" style="height:90%" data-val="Jul 4.3K+"></div>
+          </div>
+          <div class="chart-months">
+            <div class="chart-month">Jan</div><div class="chart-month">Feb</div><div class="chart-month">Mar</div>
+            <div class="chart-month">Apr</div><div class="chart-month">May</div><div class="chart-month">Jun</div>
+            <div class="chart-month">Jul</div>
+          </div>
+        </div>
+        <div class="insight-bar-label"><span>Profile Visits</span><span>88%</span></div>
+        <div class="insight-bar"><div class="insight-bar-fill" data-width="88"></div></div>
+        <div class="insight-bar-label"><span>Reel Views</span><span>74%</span></div>
+        <div class="insight-bar"><div class="insight-bar-fill" data-width="74"></div></div>
+        <div class="insight-bar-label"><span>Story Interactions</span><span>62%</span></div>
+        <div class="insight-bar"><div class="insight-bar-fill" data-width="62"></div></div>
+        <div class="insight-bar-label"><span>DM Inquiries</span><span>53%</span></div>
+        <div class="insight-bar"><div class="insight-bar-fill" data-width="53"></div></div>
+        <div class="insight-bar-label"><span>Saves &amp; Shares</span><span>80%</span></div>
+        <div class="insight-bar"><div class="insight-bar-fill" data-width="80"></div></div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-lg-4" data-aos="fade-up">
+        <h5 class="text-white mb-4" style="font-size:0.9rem;letter-spacing:2px;text-transform:uppercase">Services Provided</h5>
+        <ul class="services-list">
+          <li><i class="fas fa-check-circle"></i> Instagram Profile Optimization</li>
+          <li><i class="fas fa-check-circle"></i> Daily Content Creation (Photos + Reels)</li>
+          <li><i class="fas fa-check-circle"></i> Caption &amp; Hashtag Strategy</li>
+          <li><i class="fas fa-check-circle"></i> Story Design &amp; Management</li>
+          <li><i class="fas fa-check-circle"></i> Audience Engagement &amp; DM Handling</li>
+          <li><i class="fas fa-check-circle"></i> Monthly Analytics Reporting</li>
+          <li><i class="fas fa-check-circle"></i> Competitor Analysis</li>
+          <li><i class="fas fa-check-circle"></i> Growth Strategy Consulting</li>
+        </ul>
+        <div class="mt-4 p-4" style="background:#191919;border-radius:14px;border:1px solid rgba(138,139,74,0.15)">
+          <div style="color:var(--accent-light);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Client Profile</div>
+          <div style="color:var(--white);font-weight:700;margin-bottom:4px">Paneri Sarees Porbandar</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.82rem">Luxury Sarees &amp; Ethnic Fashion</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.82rem">📍 Porbandar, Gujarat, India</div>
+        </div>
+      </div>
+
+      <!-- Before / After -->
+      <div class="col-lg-4" data-aos="fade-left">
+        <h5 class="text-white mb-4" style="font-size:0.9rem;letter-spacing:2px;text-transform:uppercase">Before vs After Results</h5>
+        <div class="before-after-card">
+          <div class="ba-item"><span class="ba-label">Followers</span><span class="ba-before">3.1K</span><span class="ba-after">4.3K+ ↑</span></div>
+          <div class="ba-item"><span class="ba-label">Engagement</span><span class="ba-before">0.8%</span><span class="ba-after">3.2% ↑</span></div>
+          <div class="ba-item"><span class="ba-label">Monthly Reach</span><span class="ba-before">5K</span><span class="ba-after">18K ↑</span></div>
+          <div class="ba-item"><span class="ba-label">Reel Views</span><span class="ba-before">400 avg</span><span class="ba-after">6.4K avg ↑</span></div>
+          <div class="ba-item"><span class="ba-label">DM Orders</span><span class="ba-before">2–3/week</span><span class="ba-after">15+/week ↑</span></div>
+          <div class="ba-item"><span class="ba-label">Profile Visits</span><span class="ba-before">800/mo</span><span class="ba-after">4.2K/mo ↑</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-6 text-center">
+        <span class="section-label">Client Love</span>
+        <h2 class="section-title">What Clients <span class="accent">Say</span></h2>
+        <div class="section-divider center"></div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Our saree brand has grown beautifully online. The content quality and strategy from @socialwithamin has been exceptional. Highly recommended!"</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div><div class="testimonial-name">Paneri Sarees</div><div class="testimonial-role">@paneri_sarees_porbandar · Porbandar</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"The reel views went from a few hundred to thousands. The hashtag strategy and content calendar transformed our Instagram presence completely."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#e8520a,#f5a623)">R</div>
+            <div><div class="testimonial-name">Rajvi Fashion House</div><div class="testimonial-role">Ethnic Wear Brand · Gujarat</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">"Professional, creative and results-driven. Our DM orders doubled within just 2 months of working with @socialwithamin. Best investment we made."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#0088cc,#00bbff)">M</div>
+            <div><div class="testimonial-name">Meera Collections</div><div class="testimonial-role">Luxury Boutique · Surat</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" data-aos="fade-up">
+  <div class="container text-center">
+    <h2 class="mb-3">Want These Results for <em>Your</em> Brand?</h2>
+    <p class="mb-5">Let's build your Instagram into a revenue-generating machine.</p>
+    <a href="contact.html" class="btn-white"><i class="fas fa-rocket"></i> Start Growing Now</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">@<span>socialwithamin</span></div>
+        <div class="footer-tagline">Premium social media management for luxury brands. Turning Instagram profiles into powerful business assets.</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/paneri_sarees_porbandar/" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917600000000" class="social-icon" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:socialwithamin@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="reels.html">Reels</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram Management</a></li>
+          <li><a href="#">Reel Production</a></li>
+          <li><a href="#">Content Strategy</a></li>
+          <li><a href="#">Brand Photography</a></li>
+          <li><a href="#">Growth Consulting</a></li>
+          <li><a href="#">Hashtag Research</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-heading">Client</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></li>
+          <li><a href="#">Paneri Sarees Porbandar</a></li>
+          <li><a href="#">Luxury Sarees · Ethnic Fashion</a></li>
+          <li><a href="#">Porbandar, Gujarat, India</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 <a href="#">@socialwithamin</a>. All rights reserved.</span>
+      <span>Portfolio for <a href="https://www.instagram.com/paneri_sarees_porbandar/" target="_blank" rel="noopener">@paneri_sarees_porbandar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
